@@ -97,6 +97,39 @@ private:
         return level(node->right, value, depth + 1);
     }
 
+    void floorCeil(Node<T>* node, T value, T& floor, T& ceil,
+               bool& hasFloor, bool& hasCeil) {
+
+        if (node == nullptr) {
+            return;
+        }
+
+        if (node->data == value) {
+            floor = value;
+            ceil = value;
+            hasFloor = true;
+            hasCeil = true;
+            return;
+        }
+
+        if (value < node->data) {
+            // node->data puede ser el techo
+            ceil = node->data;
+            hasCeil = true;
+
+            // Buscamos un techo más pequeño
+            floorCeil(node->left, value, floor, ceil, hasFloor, hasCeil);
+        }
+        else {
+            // node->data puede ser el piso
+            floor = node->data;
+            hasFloor = true;
+
+            // Buscamos un piso más grande
+            floorCeil(node->right, value, floor, ceil, hasFloor, hasCeil);
+        }
+    }
+
     void inorder(Node<T>* node) {
         if (node == nullptr) return;
         inorder(node->left);
@@ -155,6 +188,15 @@ public:
 
     int level(T value) {
         return level(root, value, 0);
+    }
+
+    void getFloorCeil(T value, T& floor, T& ceil,
+                  bool& hasFloor, bool& hasCeil) {
+
+        hasFloor = false;
+        hasCeil = false;
+
+        floorCeil(root, value, floor, ceil, hasFloor, hasCeil);
     }
 
     void inorder() {
