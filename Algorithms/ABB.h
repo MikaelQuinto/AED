@@ -81,6 +81,22 @@ private:
         return search(node->right, value);
     }
 
+    int level(Node<T>* node, T value, int depth) {
+        if (node == nullptr) {
+            return -1;
+        }
+
+        if (node->data == value) {
+            return depth;
+        }
+
+        if (value < node->data) {
+            return level(node->left, value, depth + 1);
+        }
+
+        return level(node->right, value, depth + 1);
+    }
+
     void inorder(Node<T>* node) {
         if (node == nullptr) return;
         inorder(node->left);
@@ -135,6 +151,10 @@ public:
 
     bool search(T value) {
         return search(root, value) != nullptr;
+    }
+
+    int level(T value) {
+        return level(root, value, 0);
     }
 
     void inorder() {
