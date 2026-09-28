@@ -2,6 +2,7 @@
 #define AED_LINKED_LIST_H
 
 #include <iostream>
+#include <stdexcept>
 
 template <typename T>
 class SinglyLinkedList {
@@ -203,6 +204,34 @@ public:
 
         tail_ = nullptr;
         size_ = 0;
+    }
+
+    T& front() {
+        if (head_ == nullptr) {
+            throw std::runtime_error("Lista vacia");
+        }
+        return head_->data;
+    }
+
+    const T& front() const {
+        if (head_ == nullptr) {
+            throw std::runtime_error("Lista vacia");
+        }
+        return head_->data;
+    }
+
+    T& back() {
+        if (tail_ == nullptr) {
+            throw std::runtime_error("Lista vacia");
+        }
+        return tail_->data;
+    }
+
+    const T& back() const {
+        if (tail_ == nullptr) {
+            throw std::runtime_error("Lista vacia");
+        }
+        return tail_->data;
     }
 
     int size() const {
@@ -420,6 +449,34 @@ public:
 
         tail_ = nullptr;
         size_ = 0;
+    }
+
+    T& front() {
+        if (head_ == nullptr) {
+            throw std::runtime_error("Lista vacia");
+        }
+        return head_->data;
+    }
+
+    const T& front() const {
+        if (head_ == nullptr) {
+            throw std::runtime_error("Lista vacia");
+        }
+        return head_->data;
+    }
+
+    T& back() {
+        if (tail_ == nullptr) {
+            throw std::runtime_error("Lista vacia");
+        }
+        return tail_->data;
+    }
+
+    const T& back() const {
+        if (tail_ == nullptr) {
+            throw std::runtime_error("Lista vacia");
+        }
+        return tail_->data;
     }
 
     int size() const {
@@ -663,6 +720,34 @@ public:
 
         tail_ = nullptr;
         size_ = 0;
+    }
+
+    T& front() {
+        if (tail_ == nullptr) {
+            throw std::runtime_error("Lista vacia");
+        }
+        return tail_->next->data;
+    }
+
+    const T& front() const {
+        if (tail_ == nullptr) {
+            throw std::runtime_error("Lista vacia");
+        }
+        return tail_->next->data;
+    }
+
+    T& back() {
+        if (tail_ == nullptr) {
+            throw std::runtime_error("Lista vacia");
+        }
+        return tail_->data;
+    }
+
+    const T& back() const {
+        if (tail_ == nullptr) {
+            throw std::runtime_error("Lista vacia");
+        }
+        return tail_->data;
     }
 
     int size() const {
