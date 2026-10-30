@@ -216,6 +216,6 @@ public:
     }
 };
 
-} // namespace aed
+}
 
 #endif // AED_ALGHORITHMS_RB_H
